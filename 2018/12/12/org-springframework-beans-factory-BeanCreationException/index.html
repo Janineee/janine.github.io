@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Janine">
+  <meta name="keywords" content="Java,">
 
 
 
@@ -123,16 +123,18 @@
 
 
 
-<meta name="description" content="You are my sunshine.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Janine&#39;s Blog">
-<meta property="og:url" content="http://janine.github.io/index.html">
+<meta name="description" content="错误背景在整合 Mybatis 与 Spring 时，遇到的错误 idea 报错信息 org.springframework.beans.factory.BeanCreationException  Error creating bean with name ‘xxx’ defined in class path resource xxx.xmlCannot resolve reference t">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="org.springframework.beans.factory.BeanCreationException">
+<meta property="og:url" content="http://janine.github.io/2018/12/12/org-springframework-beans-factory-BeanCreationException/index.html">
 <meta property="og:site_name" content="Janine&#39;s Blog">
-<meta property="og:description" content="You are my sunshine.">
+<meta property="og:description" content="错误背景在整合 Mybatis 与 Spring 时，遇到的错误 idea 报错信息 org.springframework.beans.factory.BeanCreationException  Error creating bean with name ‘xxx’ defined in class path resource xxx.xmlCannot resolve reference t">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-12T13:16:03.913Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Janine&#39;s Blog">
-<meta name="twitter:description" content="You are my sunshine.">
+<meta name="twitter:title" content="org.springframework.beans.factory.BeanCreationException">
+<meta name="twitter:description" content="错误背景在整合 Mybatis 与 Spring 时，遇到的错误 idea 报错信息 org.springframework.beans.factory.BeanCreationException  Error creating bean with name ‘xxx’ defined in class path resource xxx.xmlCannot resolve reference t">
 
 
 
@@ -162,13 +164,13 @@
 
 
 
-  <link rel="canonical" href="http://janine.github.io/">
+  <link rel="canonical" href="http://janine.github.io/2018/12/12/org-springframework-beans-factory-BeanCreationException/">
 
 
 
 
 
-  <title>Janine's Blog</title>
+  <title>org.springframework.beans.factory.BeanCreationException | Janine's Blog</title>
   
 
 
@@ -187,8 +189,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -271,9 +272,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -303,9 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/12/org-springframework-beans-factory-BeanCreationException/" itemprop="url">org.springframework.beans.factory.BeanCreationException</a></h1>
+          <h1 class="post-title" itemprop="name headline">org.springframework.beans.factory.BeanCreationException</h1>
         
 
         <div class="post-meta">
@@ -377,22 +376,13 @@
       
 
       
-        
-          
-          错误背景在整合 Mybatis 与 Spring 时，遇到的错误
-idea 报错信息
-org.springframework.beans.factory.BeanCreationException
-
-Error creating bean with name ‘xxx’ defined in cla
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/12/org-springframework-beans-factory-BeanCreationException/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h3 id="错误背景"><a href="#错误背景" class="headerlink" title="错误背景"></a>错误背景</h3><p>在整合 Mybatis 与 Spring 时，遇到的错误</p>
+<h3 id="idea-报错信息"><a href="#idea-报错信息" class="headerlink" title="idea 报错信息"></a>idea 报错信息</h3><ul>
+<li>org.springframework.beans.factory.BeanCreationException</li>
+</ul>
+<p>Error creating bean with name ‘xxx’ defined in class path resource xxx.xml<br>Cannot resolve reference to bean ‘sqlSessionFactory’ while setting bean property ‘sqlSessionFactory’<br>nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException:<br><code>No bean</code> named ‘sqlSessionFactory’ available</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">it&apos;s long code</span><br><span class="line">it&apos;s me</span><br></pre></td></tr></table></figure>
+<h3 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h3><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3>
       
     </div>
     
@@ -407,14 +397,20 @@ Error creating bean with name ‘xxx’ defined in cla
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -424,10 +420,11 @@ Error creating bean with name ‘xxx’ defined in cla
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -435,6 +432,10 @@ Error creating bean with name ‘xxx’ defined in cla
 
 
           
+
+  
+
+
 
         </div>
         
@@ -455,8 +456,17 @@ Error creating bean with name ‘xxx’ defined in cla
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -518,6 +528,22 @@ Error creating bean with name ‘xxx’ defined in cla
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误背景"><span class="nav-number">1.</span> <span class="nav-text">错误背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#idea-报错信息"><span class="nav-number">2.</span> <span class="nav-text">idea 报错信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误分析"><span class="nav-number">3.</span> <span class="nav-text">错误分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">4.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -666,6 +692,10 @@ Error creating bean with name ‘xxx’ defined in cla
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
