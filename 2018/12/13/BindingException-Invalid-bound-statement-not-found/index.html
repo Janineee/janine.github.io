@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Janine">
+  <meta name="keywords" content="Java,Exception,">
 
 
 
@@ -123,16 +123,20 @@
 
 
 
-<meta name="description" content="You are my sunshine.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Janine&#39;s Blog">
-<meta property="og:url" content="http://janine.github.io/index.html">
+<meta name="description" content="错误信息12345678910111213141516171819202122232425262728293031org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.janine.mapper.UserMapper.getUserById	at org.apache.ibatis.">
+<meta name="keywords" content="Java,Exception">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BindingException: Invalid bound statement (not found)">
+<meta property="og:url" content="http://janine.github.io/2018/12/13/BindingException-Invalid-bound-statement-not-found/index.html">
 <meta property="og:site_name" content="Janine&#39;s Blog">
-<meta property="og:description" content="You are my sunshine.">
+<meta property="og:description" content="错误信息12345678910111213141516171819202122232425262728293031org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.janine.mapper.UserMapper.getUserById	at org.apache.ibatis.">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://janine.github.io/2018/12/13/BindingException-Invalid-bound-statement-not-found/tree.png">
+<meta property="og:updated_time" content="2018-12-13T09:08:51.278Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Janine&#39;s Blog">
-<meta name="twitter:description" content="You are my sunshine.">
+<meta name="twitter:title" content="BindingException: Invalid bound statement (not found)">
+<meta name="twitter:description" content="错误信息12345678910111213141516171819202122232425262728293031org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.janine.mapper.UserMapper.getUserById	at org.apache.ibatis.">
+<meta name="twitter:image" content="http://janine.github.io/2018/12/13/BindingException-Invalid-bound-statement-not-found/tree.png">
 
 
 
@@ -162,13 +166,13 @@
 
 
 
-  <link rel="canonical" href="http://janine.github.io/">
+  <link rel="canonical" href="http://janine.github.io/2018/12/13/BindingException-Invalid-bound-statement-not-found/">
 
 
 
 
 
-  <title>Janine's Blog</title>
+  <title>BindingException: Invalid bound statement (not found) | Janine's Blog</title>
   
 
 
@@ -187,8 +191,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -271,9 +274,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -303,9 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/13/BindingException-Invalid-bound-statement-not-found/" itemprop="url">BindingException: Invalid bound statement (not found)</a></h1>
+          <h1 class="post-title" itemprop="name headline">BindingException: Invalid bound statement (not found)</h1>
         
 
         <div class="post-meta">
@@ -377,18 +378,11 @@
       
 
       
-        
-          
-          错误信息12345678910111213141516171819202122232425262728293031org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.janine.m
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/13/BindingException-Invalid-bound-statement-not-found/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.janine.mapper.UserMapper.getUserById</span><br><span class="line"></span><br><span class="line">	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<span class="tag">&lt;<span class="name">init</span>&gt;</span>(MapperMethod.java:227)</span><br><span class="line">	at org.apache.ibatis.binding.MapperMethod.<span class="tag">&lt;<span class="name">init</span>&gt;</span>(MapperMethod.java:49)</span><br><span class="line">	at org.apache.ibatis.binding.MapperProxy.cachedMapperMethod(MapperProxy.java:65)</span><br><span class="line">	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58)</span><br><span class="line">	at com.sun.proxy.$Proxy10.getUserById(Unknown Source)</span><br><span class="line">	at com.janine.mapper.UserMapperTest.getUserById(UserMapperTest.java:24)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">	at java.lang.reflect.Method.invoke(Method.java:498)</span><br><span class="line">	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)</span><br><span class="line">	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)</span><br><span class="line">	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)</span><br><span class="line">	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)</span><br><span class="line">	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)</span><br><span class="line">	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)</span><br><span class="line">	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)</span><br><span class="line">	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)</span><br><span class="line">	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)</span><br><span class="line">	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)</span><br><span class="line">	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)</span><br><span class="line">	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)</span><br><span class="line">	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)</span><br><span class="line">	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)</span><br><span class="line">	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)</span><br><span class="line">	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)</span><br><span class="line">	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)</span><br><span class="line">	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)</span><br><span class="line">	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)</span><br></pre></td></tr></table></figure>
+<h3 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h3><p>这是由于 Idea 编译时不会把源码中的 xml 文件归为资源文件<br><img src="/2018/12/13/BindingException-Invalid-bound-statement-not-found/tree.png" title="项目结构图"></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>在 maven 的配置文件 <em>pom.xml</em> 的 <code>&lt;build&gt;喵&lt;/build&gt;</code> 标签中添加以下代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--   描述存放资源的目录，该路径相对POM路径--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -403,163 +397,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://janine.github.io/2018/12/13/Hexo-命令总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Janine">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Janine's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/13/Hexo-命令总结/" itemprop="url">Hexo 命令总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-13T09:44:52+08:00">
-                2018-12-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-
+            <a href="/tags/Exception/" rel="tag"># Exception</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          复合部署流程hexo clean&emsp;&emsp;(清除临时文件，可以不加)hexo g -d&emsp;&emsp;(生成+部署)
-草稿hexo new draft &quot;xxx&quot;&emsp;&emsp;新建草稿hexo publish &quot;xxx&quot;&ems
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/13/Hexo-命令总结/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/13/Hexo-命令总结/" rel="next" title="Hexo 命令总结">
+                <i class="fa fa-chevron-left"></i> Hexo 命令总结
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -569,10 +438,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -580,6 +450,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -600,8 +474,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -663,6 +546,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误信息"><span class="nav-number">1.</span> <span class="nav-text">错误信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误分析"><span class="nav-number">2.</span> <span class="nav-text">错误分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -811,6 +710,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
