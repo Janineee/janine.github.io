@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,Model,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="序列类型Python中的序列类型可分为两种：容器序列与扁平序列。  容器序列：list、tuple 和 collections.deque 扁平序列：str、bytes、bytearray、memoryview 和 array.array容器序列存放的是对象的引用，所以能存放不同类型的数据；扁平序列存放的是值而不是引用(一段连续的内存空间)，所以只能容纳一种类型   Python中的序列类型还能按">
+<meta name="keywords" content="Python,Model">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据结构">
+<meta property="og:url" content="http://janine.github.io/2018/12/17/Python数据结构/index.html">
+<meta property="og:site_name" content="Janine&#39;s Blog">
+<meta property="og:description" content="序列类型Python中的序列类型可分为两种：容器序列与扁平序列。  容器序列：list、tuple 和 collections.deque 扁平序列：str、bytes、bytearray、memoryview 和 array.array容器序列存放的是对象的引用，所以能存放不同类型的数据；扁平序列存放的是值而不是引用(一段连续的内存空间)，所以只能容纳一种类型   Python中的序列类型还能按">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-17T11:16:10.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python数据结构">
+<meta name="twitter:description" content="序列类型Python中的序列类型可分为两种：容器序列与扁平序列。  容器序列：list、tuple 和 collections.deque 扁平序列：str、bytes、bytearray、memoryview 和 array.array容器序列存放的是对象的引用，所以能存放不同类型的数据；扁平序列存放的是值而不是引用(一段连续的内存空间)，所以只能容纳一种类型   Python中的序列类型还能按">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://janine.github.io/2018/12/17/Python数据结构/">
+
+
+
+
+
+  <title>Python数据结构 | Janine's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <style type="text/css">
+html hanla:after {
+   content: " ";
+   display: inline;
+   font-family: Arial;
+   font-size: 0.89em;
+}
+
+html code hanla,
+html pre hanla,
+html kbd hanla,
+html samp hanla {
+display: none;
+}
+
+html ol > hanla,
+html ul > hanla {
+display: none;
+}
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Janine's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hello, World~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://janine.github.io/2018/12/17/Python数据结构/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Janine">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Janine's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python数据结构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-17T11:05:09+08:00">
+                2018-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="序列类型"><a href="#序列类型" class="headerlink" title="序列类型"></a>序列类型</h2><p>Python中的序列类型可分为两种：容器序列与扁平序列。</p>
+<ul>
+<li>容器序列：list、tuple 和 collections.deque</li>
+<li>扁平序列：str、bytes、bytearray、memoryview 和 array.array<br>容器序列存放的是对象的引用，所以能存放不同类型的数据；扁平序列存放的是值而不是引用(一段连续的内存空间)，所以只能容纳一种类型</li>
+</ul>
+<hr>
+<p>Python中的序列类型还能按是否能被修改来被分类：</p>
+<ul>
+<li>可变序列：list、bytearray、array.array、collections.deque 和 memoryview。</li>
+<li>不可变序列：tuple、str 和 bytes。</li>
+</ul>
+<h3 id="list-comprehension-amp-generator-expression"><a href="#list-comprehension-amp-generator-expression" class="headerlink" title="list comprehension &amp; generator expression"></a>list comprehension &amp; generator expression</h3><p>我们把列表推导(list comprehension)简称为listcomps，生成器式表达器(generator expression)则称为genexps。</p>
+<p>listcomps<br>genexps</p>
+<h4 id="关于变量泄露"><a href="#关于变量泄露" class="headerlink" title="关于变量泄露"></a>关于变量泄露</h4><p>Python 2.x中，listcomps、genexps等没有自己的局部作用域，下面这段控制台代码就会导致x的值被改变</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python 2.7.6</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = <span class="string">'my precious'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dummy = [x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">'ABC'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x</span><br><span class="line"><span class="string">'C'</span></span><br></pre></td></tr></table></figure>
+<h3 id="关于元组"><a href="#关于元组" class="headerlink" title="关于元组"></a>关于元组</h3><p>元组除了作为<strong>可变的列表</strong>而存在以外，还可以用于<strong>没有字段名的记录</strong>。</p>
+<h4 id="元组拆包"><a href="#元组拆包" class="headerlink" title="元组拆包"></a>元组拆包</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下面几组代码你都能得到想象中的结果</span></span><br><span class="line">b, a = a, b</span><br><span class="line"></span><br><span class="line">t = (<span class="number">20</span>, <span class="number">8</span>)</span><br><span class="line">quotient, remainder = divmod(*t)</span><br><span class="line"></span><br><span class="line">a, b, *rest = range(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个*放在任意位置都能得到你想要的结果</span></span><br><span class="line">a, *body, c, d = range(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="嵌套元组拆包"><a href="#嵌套元组拆包" class="headerlink" title="嵌套元组拆包"></a>嵌套元组拆包</h4><p>只要接受方的结构符合表达式本身的嵌套结构，Python就可以做出正确的回应=v=<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a, b, (c, d) = (<span class="number">1</span>, <span class="number">2</span>, (<span class="string">'🙃'</span>, <span class="string">'🙃🙃'</span>))</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在Python 3之前，元组可以作为形参放在函数声明中，然而Python 3不再支持这种格式（这个改变对函数调用者并没有影响，它改变的是某些函数的声明方式）。具体原因见<a href="https://www.python.org/dev/peps/pep-3113/" target="_blank" rel="noopener">PEP 3113</a></p>
+</blockquote>
+<h4 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple"></a>namedtuple</h4><p>collections.namedtuple 是一个工厂函数，它可以用来构建一个带字段名的元组和一个有名字的类。<br>用 namedtuple 构建的类的实例所消耗的内存跟元组是一样的，因为字段名都被存在对应的类里面。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Doge = collections.namedtuple(<span class="string">'AD'</span>, <span class="string">'sweater pants shoes'</span>)</span><br><span class="line">dog = Doge(sweater=<span class="string">'sw'</span>, pants=<span class="string">'pa'</span>, shoes=<span class="string">'sh'</span>)</span><br><span class="line">print(dog)</span><br><span class="line"><span class="comment"># AD(sweater='sw', pants='pa', shoes='sh')</span></span><br><span class="line">print(Doge)</span><br><span class="line"><span class="comment"># &lt;class '__main__.AD'&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="作为不可变列表的元组"><a href="#作为不可变列表的元组" class="headerlink" title="作为不可变列表的元组"></a>作为不可变列表的元组</h4><style>
+table{
+    font-family:consolas;
+}
+
+table th:first-of-type {
+    width: 20%;
+}
+table th:nth-of-type(2) {
+    width: 5%;
+}
+table th:nth-of-type(3) {
+    width: 5%;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>列表</th>
+<th>元组</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s.__add__(s2)</td>
+<td>•</td>
+<td>•</td>
+<td>s + s2，拼接</td>
+</tr>
+<tr>
+<td>s.__iadd__(s2)</td>
+<td>•</td>
+<td></td>
+<td>s += s2，就地拼接</td>
+</tr>
+<tr>
+<td>s.append(e)</td>
+<td>•</td>
+<td></td>
+<td>在尾部添加一个新元素</td>
+</tr>
+<tr>
+<td>s.clear()</td>
+<td>•</td>
+<td></td>
+<td>删除所有元素</td>
+</tr>
+<tr>
+<td>s.__contains__(e)</td>
+<td>•</td>
+<td>•</td>
+<td>s 是否包含 e</td>
+</tr>
+<tr>
+<td>s.copy()</td>
+<td>•</td>
+<td></td>
+<td>列表的浅复制</td>
+</tr>
+<tr>
+<td>s.count(e)</td>
+<td>•</td>
+<td>•</td>
+<td>e 在 s 中出现的次数</td>
+</tr>
+<tr>
+<td>s.__delitem__(p)</td>
+<td>•</td>
+<td></td>
+<td>把位于 p 的元素删除</td>
+</tr>
+<tr>
+<td>s.extend(it)</td>
+<td>•</td>
+<td></td>
+<td>把可迭代对象 it 追加给 s</td>
+</tr>
+<tr>
+<td>s.__getitem__(p)</td>
+<td>•</td>
+<td>•</td>
+<td>s[p]，获取位置 p 的元素</td>
+</tr>
+<tr>
+<td>s.__getnewargs__()</td>
+<td></td>
+<td>•</td>
+<td>在 pickle 中支持更加优化的序列化</td>
+</tr>
+<tr>
+<td>s.index(e)</td>
+<td>•</td>
+<td>•</td>
+<td>在 s 中找到元素 e 第一次出现的位置</td>
+</tr>
+<tr>
+<td>s.insert(p, e)</td>
+<td>•</td>
+<td></td>
+<td>在位置 p 之前插入元素e</td>
+</tr>
+<tr>
+<td>s.__iter__()</td>
+<td>•</td>
+<td>•</td>
+<td>获取 s 的迭代器</td>
+</tr>
+<tr>
+<td>s.__len__()</td>
+<td>•</td>
+<td>•</td>
+<td>len(s)，元素的数量</td>
+</tr>
+<tr>
+<td>s.__mul__(n)</td>
+<td>•</td>
+<td>•</td>
+<td>s * n，n 个 s 的重复拼接</td>
+</tr>
+<tr>
+<td>s.__imul__(n)</td>
+<td>•</td>
+<td></td>
+<td>s *= n，就地重复拼接</td>
+</tr>
+<tr>
+<td>s.__rmul__(n)</td>
+<td>•</td>
+<td>•</td>
+<td>n * s，反向拼接 *</td>
+</tr>
+<tr>
+<td>s.pop([p])</td>
+<td>•</td>
+<td></td>
+<td>删除最后或者是（可选的）位于 p 的元素，并返回它的值</td>
+</tr>
+<tr>
+<td>s.remove(e)</td>
+<td>•</td>
+<td></td>
+<td>删除 s 中的第一次出现的 e</td>
+</tr>
+<tr>
+<td>s.reverse()</td>
+<td>•</td>
+<td></td>
+<td>就地把 s 的元素倒序排列</td>
+</tr>
+<tr>
+<td>s.__reversed__()</td>
+<td>•</td>
+<td></td>
+<td>返回 s 的倒序迭代器</td>
+</tr>
+<tr>
+<td>s.__setitem__(p, e)</td>
+<td>•</td>
+<td></td>
+<td>s[p] = e，把元素 e 放在位置p，替代已经在那个位置的元素</td>
+</tr>
+<tr>
+<td>s.sort([key], [reverse])</td>
+<td>•</td>
+<td></td>
+<td>就地对 s 中的元素进行排序，可选的参数有键（key）和是否倒序（reverse）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><p>我们知道，切片操作的区间是左闭右开的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1表示步长，-号表示反向</span></span><br><span class="line">print(lst[::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+<h4 id="多维切片"><a href="#多维切片" class="headerlink" title="多维切片"></a>多维切片</h4><p>[] 运算符里还可以使用以逗号分开的多个索引/切片。要正确处理这种 [] 运算符的话，对象的特殊方法<code>\__getitem\__</code>和<code>\__setitem\__</code>需要以元组的形式来接收 <strong>a[i, j]</strong> 中的索引。也就是说，如果要得到 <strong>a[i, j]</strong> 的值，Python 会调用<code>a.\__getitem\__((i, j))</code>。</p>
+<h4 id="省略"><a href="#省略" class="headerlink" title="省略"></a>省略</h4><blockquote>
+<p>省略（ellipsis）的正确书写方法是三个英语句号（…），省略在 Python 解析器眼里是一个符号，而实际上它是 Ellipsis 对象的别名，而 Ellipsis 对象又是 ellipsis 类的单一实例(跟 bool 是小写，但是它的两个实例写作 True 和 False 相似)。</p>
+</blockquote>
+<p>省略可以用在函数参数列表中：<code>func(a, ..., z)</code><br>可以当做切片规范的一部分：<code>a[i:...]</code></p>
+<h3 id="序列的-与"><a href="#序列的-与" class="headerlink" title="序列的 + 与 *"></a>序列的 + 与 *</h3><p>我们知道可以用<code>&#39;xixi&#39; * 3</code>来组成<code>&#39;xixixixixixi&#39;</code>这个字符串，通用可以把这种操作符重载使用在<code>lsit</code>等类型上，比如你想用<code>my_list = [[]] * 3</code>来初始化一个列表，但是我们<strong>得到的列表里包含的三个列表其实是三个引用，指向同一个列表</strong>，这可能与我们想象的不一致。<br>当我们想这样做时，最好的选择是使用列表推导：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">board = [[<span class="string">'_'</span>] * <span class="number">4</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>)]</span><br><span class="line">print(board)</span><br><span class="line"><span class="comment"># [['_', '_', '_', '_'], ['_', '_', '_', '_'], ['_', '_', '_', '_']]</span></span><br><span class="line"></span><br><span class="line">board[<span class="number">1</span>][<span class="number">2</span>] = <span class="string">'X'</span></span><br><span class="line">print(board)</span><br><span class="line"><span class="comment"># 拿到了我们想要的结果</span></span><br><span class="line"><span class="comment"># [['_', '_', '_', '_'], ['_', '_', 'X', '_'], ['_', '_', '_', '_']]</span></span><br></pre></td></tr></table></figure></p>
+<p>下面这个方法看上去更简单，然而得到的结果与我们想象中不一样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">weird_board = [[<span class="string">'_'</span>] * <span class="number">3</span>] * <span class="number">3</span></span><br><span class="line">print(weird_board)</span><br><span class="line"><span class="comment"># [['_', '_', '_'], ['_', '_', '_'], ['_', '_', '_']]</span></span><br><span class="line"></span><br><span class="line">weird_board[<span class="number">1</span>][<span class="number">2</span>] = <span class="string">'O'</span></span><br><span class="line">print(weird_board)</span><br><span class="line"><span class="comment"># [['_', '_', 'O'], ['_', '_', 'O'], ['_', '_', 'O']]</span></span><br></pre></td></tr></table></figure></p>
+<p>事实上，上面这段代码犯的错误本质上跟下面的代码犯的错误一样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">row = [<span class="string">'_'</span>] * <span class="number">3</span></span><br><span class="line">board = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    board.append(row)</span><br></pre></td></tr></table></figure></p>
+<h3 id="序列的-和"><a href="#序列的-和" class="headerlink" title="序列的 += 和 *="></a>序列的 += 和 *=</h3><p>+=和*=本质上差不多，这里简化讨论+=。<br>当我们使用+=操作符，Python背后会调用特殊方法<code>\__iadd\__</code>。同时对可变序列来说，变量会就地改动(比如调用extend方法等)，如果没有实现这个方法，就退一步调用<code>\__add\__</code>，效果就类似于<code>a = a + b</code>，产生一个新对象再赋值。所以说，在<code>a += b</code>这个表达式中，变量名会不会被关联到新的对象，取决于这个类型有没有实现<code>\__iadd\__</code>这个方法(事实上可变序列一般都实现了，不可变序列根本就不支持这个操作啦)。<br>对不可变序列进行重复拼接操作(改引用而已)的话，效率会很低，因为每次都会产生新的对象。</p>
+<blockquote>
+<p><strong>str</strong>是一个例外，因为对字符串做+=实在是太普遍了，所以CPython对它做了优化。为<strong>str</strong>初始化内存的时候，程序会为它留出额外的可扩展空间，因此进行增量操作的时候，并不会涉及复制原有字符串到新位置这类操作。</p>
+</blockquote>
+<p>一个很无聊的错误：<br>执行下面这段代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = (<span class="number">1</span>, <span class="number">2</span>, [<span class="number">30</span>, <span class="number">40</span>])</span><br><span class="line">t[<span class="number">2</span>] += [<span class="number">50</span>, <span class="number">60</span>]</span><br></pre></td></tr></table></figure></p>
+<p>会抛出异常<code>TypeError: &#39;tuple&#39; object does not support item assignment</code><br>这行代码(第2行)的本质分为两步</p>
+<ol>
+<li>new_list = [30, 40] += [50, 60]</li>
+<li>t[2] = new_list</li>
+</ol>
+<p>程序是在第二步出错的，所以第一步会被执行，这个<code>t[2]</code>实际上是改变成我们想要的值的。<br>所以，大佬得到了三个教训：</p>
+<ol>
+<li>不要把可变对象放在元组里面。</li>
+<li>增量赋值不是一个原子操作。我们刚才也看到了，它虽然抛出了异常，但还是完成了操作。</li>
+<li>查看Python的字节码并不难，而且它对我们了解代码背后的运行机制很有帮助。</li>
+</ol>
+<h3 id="list-sort方法和内置函数sorted"><a href="#list-sort方法和内置函数sorted" class="headerlink" title="list.sort方法和内置函数sorted"></a>list.sort方法和内置函数sorted</h3><p>list.sort方法会就地排序列表，也就是说不会把原列表复制一份。这也是这个方法的返回值是None的原因，提醒你本方法不会新建一个列表。在这种情况下返回None其实是Python的一个惯例：如果一个函数或者方法对对象进行的是就地改动，那它就应该返回None，好让调用者知道传入的参数发生了变动，而且并未产生新的对象。<br>这样操作有一个缺点，无法链式调用，形成<a href="https://en.wikipedia.org/wiki/Fluent_interface" target="_blank" rel="noopener">fluent interface</a></p>
+<blockquote>
+<p>In Python returning <code>self</code> in the instance method is one way to implement the fluent pattern.</p>
+</blockquote>
+<p>与list.sort相反的是，内置函数sorted会新建一个列表作为返回值。</p>
+<h3 id="当列表不是首选项"><a href="#当列表不是首选项" class="headerlink" title="当列表不是首选项"></a>当列表不是首选项</h3><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>创建数组需要一个类型码，这个类型码用来表示在底层的C语言应该存放怎样的数据类型。</p>
+<p>列表和数组中的基本操作：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>列表</th>
+<th>数组</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>seq.__add__(s2)__</td>
+<td>•</td>
+<td>•</td>
+<td>s + s2，拼接</td>
+</tr>
+<tr>
+<td>seq.__iadd__(s2)__</td>
+<td>•</td>
+<td>•</td>
+<td>s += s2，就地拼接</td>
+</tr>
+<tr>
+<td>seq.append(e)</td>
+<td>•</td>
+<td>•</td>
+<td>在尾部添加一个元素</td>
+</tr>
+<tr>
+<td>seq.byteswap</td>
+<td></td>
+<td>•</td>
+<td>翻转数组内每个元素的字节序列，转换字节序</td>
+</tr>
+<tr>
+<td>seq.clear()</td>
+<td>•</td>
+<td></td>
+<td>删除所有元素</td>
+</tr>
+<tr>
+<td>seq.__contains__(e)</td>
+<td>•</td>
+<td>•</td>
+<td>s 是否含有 e</td>
+</tr>
+<tr>
+<td>seq.copy()</td>
+<td>•</td>
+<td></td>
+<td>对列表浅复制</td>
+</tr>
+<tr>
+<td>seq.__copy__()</td>
+<td></td>
+<td>•</td>
+<td>对 copy.copy 的支持</td>
+</tr>
+<tr>
+<td>seq.count(e)</td>
+<td>•</td>
+<td>•</td>
+<td>s 中 e 出现的次数</td>
+</tr>
+<tr>
+<td>seq.__deepcopy__()</td>
+<td></td>
+<td>•</td>
+<td>对 copy.deepcopy 的支持</td>
+</tr>
+<tr>
+<td>seq.__delitem__(p)</td>
+<td>•</td>
+<td>•</td>
+<td>删除位置 p 的元素</td>
+</tr>
+<tr>
+<td>seq.extend(it)</td>
+<td>•</td>
+<td>•</td>
+<td>将可迭代对象 it 里的元素添加到尾部</td>
+</tr>
+<tr>
+<td>seq.frombytes(b)</td>
+<td></td>
+<td>•</td>
+<td>将压缩成机器值的字节序列读出来添加到尾部</td>
+</tr>
+<tr>
+<td>seq.fromfile(f, n)</td>
+<td></td>
+<td>•</td>
+<td>将二进制文件 f 内含有机器值读出来添加到尾部，最多添加 n 项</td>
+</tr>
+<tr>
+<td>seq.fromlist(l)</td>
+<td></td>
+<td>•</td>
+<td>将列表里的元素添加到尾部，如果其中任何一个元素导致了 TypeError 异常，那么所有的添加都会取消</td>
+</tr>
+<tr>
+<td>seq.__getitem__(p)</td>
+<td>•</td>
+<td>•</td>
+<td>s[p]，读取位置 p 的元素</td>
+</tr>
+<tr>
+<td>seq.index(e)</td>
+<td>•</td>
+<td>•</td>
+<td>找到 e 在序列中第一次出现的位置</td>
+</tr>
+<tr>
+<td>seq.insert(p, e)</td>
+<td>•</td>
+<td>•</td>
+<td>在位于 p 的元素之前插入元素 e</td>
+</tr>
+<tr>
+<td>seq.itemsize</td>
+<td></td>
+<td>•</td>
+<td>数组中每个元素的长度是几个字节</td>
+</tr>
+<tr>
+<td>seq.__iter__()</td>
+<td>•</td>
+<td>•</td>
+<td>返回迭代器</td>
+</tr>
+<tr>
+<td>seq.__len__()</td>
+<td>•</td>
+<td>•</td>
+<td>len(s)，序列的长度</td>
+</tr>
+<tr>
+<td>seq.__mul__(n)</td>
+<td>•</td>
+<td>•</td>
+<td>s * n，重复拼接</td>
+</tr>
+<tr>
+<td>seq.__imul__(n)</td>
+<td>•</td>
+<td>•</td>
+<td>s *= n，就地重复拼接</td>
+</tr>
+<tr>
+<td>seq.__rmul__(n)</td>
+<td>•</td>
+<td>•</td>
+<td>n <em> s，反向重复拼接</em></td>
+</tr>
+<tr>
+<td>seq.pop([p])</td>
+<td>•</td>
+<td>•</td>
+<td>删除位于 p 的值并返回这个值，p 的默认值是最后一个元素的位置</td>
+</tr>
+<tr>
+<td>seq.remove(e)</td>
+<td>•</td>
+<td>•</td>
+<td>删除序列里第一次出现的 e 元素</td>
+</tr>
+<tr>
+<td>seq.reverse()</td>
+<td>•</td>
+<td>•</td>
+<td>就地调转序列中元素的位置</td>
+</tr>
+<tr>
+<td>seq.__reversed__()</td>
+<td>•</td>
+<td></td>
+<td>返回一个从尾部开始扫描元素的迭代器</td>
+</tr>
+<tr>
+<td>seq.__setitem__(p, e)</td>
+<td>•</td>
+<td>•</td>
+<td>s[p] = e，把位于 p 位置的元素替换成 e</td>
+</tr>
+<tr>
+<td>seq.sort([key], [revers])</td>
+<td>•</td>
+<td></td>
+<td>就地排序序列，可选参数有 key 和 reverse</td>
+</tr>
+<tr>
+<td>seq.tobytes()</td>
+<td></td>
+<td>•</td>
+<td>把所有元素的机器值用 bytes 对象的形式返回</td>
+</tr>
+<tr>
+<td>seq.tofile(f)</td>
+<td></td>
+<td>•</td>
+<td>把所有元素以机器值的形式写入一个文件</td>
+</tr>
+<tr>
+<td>seq.tolist()</td>
+<td></td>
+<td>•</td>
+<td>把数组转换成列表，列表里的元素类型是数字对象</td>
+</tr>
+<tr>
+<td>seq.typecode</td>
+<td></td>
+<td>•</td>
+<td>返回只有一个字符的字符串，代表数组元素在 C 语言中的类型</td>
+</tr>
+</tbody>
+</table>
+<p>从Python 3.4开始，数组类型不再支持list.sort()这种原地排序方法，要排序就得用sorted()函数新建数组：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = array.array(a.typecode, sorted(a))</span><br></pre></td></tr></table></figure></p>
+<h4 id="memoryview"><a href="#memoryview" class="headerlink" title="memoryview"></a>memoryview</h4><blockquote>
+<p><a href="https://stackoverflow.com/questions/4845418/when-should-a-memoryview-be-used/" target="_blank" rel="noopener">memoryview</a>其实是泛化和去数学化的NumPy数组。它让你在不需要复制内容的前提下，在数据结构之间共享内存。其中数据结构可以是任何形式，比如PIL图片、SQLite数据库和NumPy的数组，等等。这个功能在处理大型数据集合的时候非常重要。</p>
+</blockquote>
+<p>memoryview.cast的概念与数组模块类似，能用不同的方式读写一块内存块，并且不会移动里面的内容字节</p>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><h4 id="collections-deque"><a href="#collections-deque" class="headerlink" title="collections.deque"></a>collections.deque</h4><p>我们可以在操作上把列表当队列来用，但是部分操作(比如删除/添加列表的第一个元素)非常耗时(涉及移动列表的所有元素)。<br>collections.deque类（双向队列）是一个线程安全、快速从两端添加/删除元素的数据类型。</p>
+<blockquote>
+<p>append和popleft都是原子操作，也就说是deque可以在多线程程序中安全地当作先进先出的栈使用，而使用者不需要担心资源锁的问题.</p>
+</blockquote>
+<h4 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h4><p>提供了同步（线程安全）类Queue、LifoQueue和PriorityQueue，不同的线程可以利用这些数据类型来交换信息。这三个类的构造方法都有一个可选参数maxsize，它接收正整数作为输入值，用来限定队列的大小。但是在满员的时候，这些类不会扔掉旧的元素来腾出位置。相反，如果队列满了，它就会被锁住，直到另外的线程移除了某个元素而腾出了位置。这一特性让这些类很适合用来<strong>控制活跃线程的数量</strong>。</p>
+<h4 id="multiprocessing"><a href="#multiprocessing" class="headerlink" title="multiprocessing"></a>multiprocessing</h4><p>这个包实现了自己的 Queue，它跟 queue.Queue 类似，是设计给进程间通信用的。同时还有一个专门的 multiprocessing.JoinableQueue 类型，可以让任务管理变得更方便。</p>
+<h4 id="asyncio"><a href="#asyncio" class="headerlink" title="asyncio"></a>asyncio</h4><p>Python 3.4新提供的包，里面有Queue、LifoQueue、PriorityQueue和JoinableQueue，这些类受到queue和multiprocessing模块的影响，但是为异步编程里的任务管理提供了专门的便利。</p>
+<h4 id="heapq"><a href="#heapq" class="headerlink" title="heapq"></a>heapq</h4><p>跟上面三个模块不同的是，heapq没有队列类，而是提供了heappush和 heappop方法，让用户可以把可变序列当作堆队列或者优先队列来使用。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>Python 序列类型最常见的分类就是可变和不可变序列。但另外一种分类方式也很有用，那就是把它们分为扁平序列和容器序列。前者的体积更小、速度更快而且用起来更简单，但是它只能保存一些原子性的数据，比如数字、字符和字节。容器序列则比较灵活，但是当容器序列遇到可变对象时，用户就需要格外小心了，因为这种组合时常会搞出一些“意外”，特别是带嵌套的数据结构出现时，用户要多费一些心思来保证代码的正确。</p>
+<p>列表推导和生成器表达式则提供了灵活构建和初始化序列的方式，这两个工具都异常强大。如果你还不能熟练地使用它们，可以专门花时间练习一下。它们其实不难，而且用起来让人上瘾。</p>
+<p>元组在 Python 里扮演了两个角色，它既可以用作无名称的字段的记录，又可以看作不可变的列表。当元组被当作记录来用的时候，拆包是最安全可靠地从元组里提取不同字段信息的方式。新引入的 * 句法让元组拆包的便利性更上一层楼，让用户可以选择性忽略不需要的字段。具名元组也已经不是一个新概念了，但它似乎没有受到应有的重视。就像普通元组一样，具名元组的实例也很节省空间，但它同时提供了方便地通过名字来获取元组各个字段信息的方式，另外还有个实用的 ._asdict() 方法来把记录变成 OrderedDict 类型。</p>
+<p>Python 里最受欢迎的一个语言特性就是序列切片，而且很多人其实还没完全了解它的强大之处。比如，用户自定义的序列类型也可以选择支持 NumPy 中的多维切片和省略（…）。另外，对切片赋值是一个修改可变序列的捷径。</p>
+<p>重复拼接 seq <em> n 在正确使用的前提下，能让我们方便地初始化含有不可变元素的多维列表。增量赋值 += 和 </em>= 会区别对待可变和不可变序列。在遇到不可变序列时，这两个操作会在背后生成新的序列。但如果被赋值的对象是可变的，那么这个序列会就地修改——然而这也取决于序列本身对特殊方法的实现。</p>
+<p>序列的 sort 方法和内置的 sorted 函数虽然很灵活，但是用起来都不难。这两个方法都比较灵活，是因为它们都接受一个函数作为可选参数来指定排序算法如何比较大小，这个参数就是 key 参数。key 还可以被用在 min 和 max 函数里。如果在插入新元素的同时还想保持有序序列的顺序，那么需要用到 bisect.insort。bisect.bisect 的作用则是快速查找。</p>
+<p>除了列表和元组，Python 标准库里还有 array.array。另外，虽然 NumPy 和 SciPy 都不是 Python 标准库的一部分，但稍微学习一下它们，会让你在处理大规模数值型数据时如有神助。</p>
+<blockquote>
+<p>Python 入门教材往往会强调列表是可以同时容纳不同类型的元素的，但是实际上这样做并没有什么特别的好处。我们之所以用列表来存放东西，是期待在稍后使用它的时候，其中的元素有一些通用的特性（比如，列表里存的是一类可以“呱呱”叫的动物，那么所有的元素都应该会发出这种叫声，即便其中一部分元素类型并不是鸭子）。<br>元组则恰恰相反，它经常用来存放不同类型的的元素。这也符合它的本质，元组就是用作存放彼此之间没有关系的数据的记录。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Model/" rel="tag"># Model</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/14/Python数据模型/" rel="next" title="Python 数据模型">
+                <i class="fa fa-chevron-left"></i> Python 数据模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/17/Python列表推导/" rel="prev" title="Python列表推导">
+                Python列表推导 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Janine">
+            
+              <p class="site-author-name" itemprop="name">Janine</p>
+              <p class="site-description motion-element" itemprop="description">You are my sunshine.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#序列类型"><span class="nav-number">1.</span> <span class="nav-text">序列类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#list-comprehension-amp-generator-expression"><span class="nav-number">1.1.</span> <span class="nav-text">list comprehension &amp; generator expression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于变量泄露"><span class="nav-number">1.1.1.</span> <span class="nav-text">关于变量泄露</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于元组"><span class="nav-number">1.2.</span> <span class="nav-text">关于元组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#元组拆包"><span class="nav-number">1.2.1.</span> <span class="nav-text">元组拆包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#嵌套元组拆包"><span class="nav-number">1.2.2.</span> <span class="nav-text">嵌套元组拆包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#namedtuple"><span class="nav-number">1.2.3.</span> <span class="nav-text">namedtuple</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作为不可变列表的元组"><span class="nav-number">1.2.4.</span> <span class="nav-text">作为不可变列表的元组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切片"><span class="nav-number">1.3.</span> <span class="nav-text">切片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多维切片"><span class="nav-number">1.3.1.</span> <span class="nav-text">多维切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#省略"><span class="nav-number">1.3.2.</span> <span class="nav-text">省略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列的-与"><span class="nav-number">1.4.</span> <span class="nav-text">序列的 + 与 *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列的-和"><span class="nav-number">1.5.</span> <span class="nav-text">序列的 += 和 *=</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list-sort方法和内置函数sorted"><span class="nav-number">1.6.</span> <span class="nav-text">list.sort方法和内置函数sorted</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当列表不是首选项"><span class="nav-number">1.7.</span> <span class="nav-text">当列表不是首选项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-number">1.7.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#memoryview"><span class="nav-number">1.7.2.</span> <span class="nav-text">memoryview</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">1.8.</span> <span class="nav-text">队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#collections-deque"><span class="nav-number">1.8.1.</span> <span class="nav-text">collections.deque</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#queue"><span class="nav-number">1.8.2.</span> <span class="nav-text">queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multiprocessing"><span class="nav-number">1.8.3.</span> <span class="nav-text">multiprocessing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asyncio"><span class="nav-number">1.8.4.</span> <span class="nav-text">asyncio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#heapq"><span class="nav-number">1.8.5.</span> <span class="nav-text">heapq</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">1.9.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Janine</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+-->
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+
+<!-- 中英文之间自动添加空格 -->
+<script type="text/javascript" src="/js/src/text-autospace.min.js"></script>
+
+</html>
