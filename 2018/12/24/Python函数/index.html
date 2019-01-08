@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="把函数视作对象12345678910def foo():    &apos;&apos;&apos;time--Tom Waits&apos;&apos;&apos;    print(&quot;And it&apos;s time, time, time, that you love&quot;)print(foo.__doc__)print(type(foo))# result:# time--Tom Waits# &amp;lt;class &apos;function&apos;&amp;gt; 高阶函数 hi">
+<meta name="keywords" content="Python,PL Grammar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python函数">
+<meta property="og:url" content="http://janine.github.io/2018/12/24/Python函数/index.html">
+<meta property="og:site_name" content="Janine&#39;s Blog">
+<meta property="og:description" content="把函数视作对象12345678910def foo():    &apos;&apos;&apos;time--Tom Waits&apos;&apos;&apos;    print(&quot;And it&apos;s time, time, time, that you love&quot;)print(foo.__doc__)print(type(foo))# result:# time--Tom Waits# &amp;lt;class &apos;function&apos;&amp;gt; 高阶函数 hi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-24T07:44:05.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python函数">
+<meta name="twitter:description" content="把函数视作对象12345678910def foo():    &apos;&apos;&apos;time--Tom Waits&apos;&apos;&apos;    print(&quot;And it&apos;s time, time, time, that you love&quot;)print(foo.__doc__)print(type(foo))# result:# time--Tom Waits# &amp;lt;class &apos;function&apos;&amp;gt; 高阶函数 hi">
+
+
+
+
+
+
+  <link rel="canonical" href="http://janine.github.io/2018/12/24/Python函数/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python函数 | Janine's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style type="text/css">
+html hanla:after {
+   content: " ";
+   display: inline;
+   font-family: Arial;
+   font-size: 0.89em;
+}
+
+html code hanla,
+html pre hanla,
+html kbd hanla,
+html samp hanla {
+display: none;
+}
+
+html ol > hanla,
+html ul > hanla {
+display: none;
+}
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Janine's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Hello, World~</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://janine.github.io/2018/12/24/Python函数/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Janine">
+      <meta itemprop="description" content="You are my sunshine.">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Janine's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python函数
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-24 09:45:28 / 修改时间：15:44:05" itemprop="dateCreated datePublished" datetime="2018-12-24T09:45:28+08:00">2018-12-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="把函数视作对象"><a href="#把函数视作对象" class="headerlink" title="把函数视作对象"></a>把函数视作对象</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''time--Tom Waits'''</span></span><br><span class="line">    print(<span class="string">"And it's time, time, time, that you love"</span>)</span><br><span class="line"></span><br><span class="line">print(foo.__doc__)</span><br><span class="line">print(type(foo))</span><br><span class="line"></span><br><span class="line"><span class="comment"># result:</span></span><br><span class="line"><span class="comment"># time--Tom Waits</span></span><br><span class="line"><span class="comment"># &lt;class 'function'&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="高阶函数-higher-order-function"><a href="#高阶函数-higher-order-function" class="headerlink" title="高阶函数 higher-order function"></a>高阶函数 higher-order function</h2><blockquote>
+<p>接受函数为参数，或者把函数作为结果返回的函数是高阶函数</p>
+</blockquote>
+<p>最典型的高阶函数有 <span class="label info">map</span>, <span class="label info">filter</span>, <span class="label info">reduce</span>, 不过它们在很多场景都有了更好的替代品。</p>
+<h3 id="map-filter-reduce-的现代替代品"><a href="#map-filter-reduce-的现代替代品" class="headerlink" title="map, filter, reduce 的现代替代品"></a>map, filter, reduce 的现代替代品</h3><p>在 Python 3 中，map 和 filter 返回生成器（一种迭代器），因此现在它们的直接替代品是生成器表达式（在 Python 2 中，这两个函数返回列表，因此最接近的替代品是列表推导）。</p>
+<p>在 Python 2 中，reduce 是内置函数，但是在 Python 3 中放到 functools 模块里了。这个函数最常用于求和，自 2003 年发布的 Python 2.3 开始，最好使用内置的 sum 函数。在可读性和性能方面，这是一项重大改善。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(functools.reduce(operator.add, range(<span class="number">100</span>)))</span><br><span class="line"></span><br><span class="line">print(sum(range(<span class="number">100</span>)))</span><br></pre></td></tr></table></figure>
+<p>上面这两行代码输出结果是一样的，第二行却明显有更高的可读性和性能</p>
+<hr>
+<p><code>map</code>和<code>reduce</code>的通用思想是把某个操作连续应用到序列的元素上，累计之前的结果，把一系列值归约成一个值<br><code>all</code>和<code>any</code>也是内置的归约函数，对iterable中的每个元素做真值检验</p>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>由于句法的限制，Python中的lambda表达式作用有限，而且可能难以阅读</p>
+<blockquote>
+<p>Lundh 提出的 lambda 表达式重构秘笈<br>(1) 编写注释，说明 lambda 表达式的作用。<br>(2) 研究一会儿注释，并找出一个名称来概括注释。<br>(3) 把 lambda 表达式转换成 def 语句，使用那个名称来定义函数。<br>(4) 删除注释。</p>
+</blockquote>
+<h3 id="callable"><a href="#callable" class="headerlink" title="callable"></a>callable</h3><p>调用运算符(就是小括号)还可以应用到其他对象上。如果想判断对象能否调用，可以使用内置的 callable() 函数。Python 数据模型文档列出了 7 种可调用对象。</p>
+<ol>
+<li>用户定义的函数：使用def/lambda创建</li>
+<li>内置函数：使用 C 语言（CPython）实现的函数，如 len 或 time.strftime。</li>
+<li>内置方法：使用 C 语言实现的方法，如 dict.get。</li>
+<li>方法：在类的定义体中定义的函数</li>
+<li>类：调用类时会运行类的__new__方法创建一个实例，然后运行__init__方法，初始化实例，最后把实例返回给调用方。因为 Python 没有 new 运算符，所以调用类相当于调用函数。</li>
+<li>类的实例：如果类定义了__call__方法，那么它的实例可以作为函数调用。</li>
+<li>生成器函数：使用 yield 关键字的函数或方法。调用生成器函数返回的是生成器对象。</li>
+</ol>
+<h3 id="用户定义的可调用类型"><a href="#用户定义的可调用类型" class="headerlink" title="用户定义的可调用类型"></a>用户定义的可调用类型</h3><p>实现__call__方法的类是创建函数类对象的简便方式，此时必须在内部维护一个状态，让它在调用之间可用。装饰器就是这样。装饰器必须是函数，而且有时要在多次调用之间“记住”某些事[ 例如备忘（memoization），即缓存消耗大的计算结果，供后面使用 ]。</p>
+<h3 id="函数内省"><a href="#函数内省" class="headerlink" title="函数内省"></a>函数内省</h3><p>下面列出一些函数有而普通对象没有的属性：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>__annotations__</td>
+<td>dict</td>
+<td>参数和返回值的注解</td>
+</tr>
+<tr>
+<td>__call__</td>
+<td>method-  wrapper</td>
+<td>实现 () 运算符；即可调用对象协议</td>
+</tr>
+<tr>
+<td>__closure__</td>
+<td>tuple</td>
+<td>函数闭包，即自由变量的绑定（通常是 None）</td>
+</tr>
+<tr>
+<td>__code__</td>
+<td>code</td>
+<td>编译成字节码的函数元数据和函数定义体</td>
+</tr>
+<tr>
+<td>__defaults__</td>
+<td>tuple</td>
+<td>形式参数的默认值</td>
+</tr>
+<tr>
+<td>__get__</td>
+<td>method-  wrapper</td>
+<td>实现只读描述符协议</td>
+</tr>
+<tr>
+<td>__globals__</td>
+<td>dict</td>
+<td>函数所在模块中的全局变量</td>
+</tr>
+<tr>
+<td>__kwdefaults__</td>
+<td>dict</td>
+<td>仅限关键字形式参数的默认值</td>
+</tr>
+<tr>
+<td>__name__</td>
+<td>str</td>
+<td>函数名称</td>
+</tr>
+<tr>
+<td>__qualname__</td>
+<td>str</td>
+<td>函数的限定名称，如 Random.choice（参阅<a href="https://www.python.org/dev/peps/pep-3155/" target="_blank" rel="noopener">PEP 3155</a>）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="函数注解"><a href="#函数注解" class="headerlink" title="函数注解"></a>函数注解</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">anno</span><span class="params">(text: str, name: <span class="string">'str &gt;= 2'</span>, length: int)</span> -&gt; str:</span></span><br><span class="line">    print(<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">print(anno.__annotations__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#123;'text': &lt;class 'str'&gt;, 'name': 'str &gt;= 2', 'length': &lt;class 'int'&gt;, 'return': &lt;class 'str'&gt;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Python 不做检查、不做强制、不做验证，什么操作都不做，Python 对注解所做的唯一的事情是，把它们存储在函数的 __annotations__ 属性里。注解对Python解释器没有任何意义，只是元数据，可以供 IDE、框架和装饰器等工具使用。<br>函数注解的最大影响或许不是让 Bobo 等框架自动设置，而是为 IDE 和 lint 程序等工具中的静态类型检查功能提供额外的类型信息。</p>
+<h3 id="支持函数式编程的包"><a href="#支持函数式编程的包" class="headerlink" title="支持函数式编程的包"></a>支持函数式编程的包</h3><p>Python 的目标不是变成函数式编程语言，但是因为有operator和functools等包支持，函数式编程也很便利。</p>
+<h4 id="operator"><a href="#operator" class="headerlink" title="operator"></a>operator</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算阶乘</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fact</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> functools.reduce(<span class="keyword">lambda</span> a, b: a * b, range(<span class="number">1</span>, n + <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">print(fact(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<span class="label success">operator</span> 模块为多个算术运算符提供了对应的函数从而避免编写 <code>lambda a, b: a*b</code> 这种平凡的匿名函数。<br>这行代码的功能与上面函数的功能一样。<br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(functools.reduce(operator.mul, range(<span class="number">1</span>, <span class="number">5</span>)))</span><br></pre></td></tr></table></figure>
+<p>这行代码可以输出operator 模块中定义的部分函数（省略了以_开头的名称，因为它们基本上是实现细节）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print([name <span class="keyword">for</span> name <span class="keyword">in</span> dir(operator) <span class="keyword">if</span> <span class="keyword">not</span> name.startswith(<span class="string">'_'</span>)])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ['abs', 'add', 'and_', 'attrgetter', 'concat', 'contains', 'countOf', 'delitem', 'eq', 'floordiv', 'ge', 'getitem', 'gt', 'iadd', 'iand', 'iconcat', 'ifloordiv', 'ilshift', 'imatmul', 'imod', 'imul', 'index', 'indexOf', 'inv', 'invert', 'ior', 'ipow', 'irshift', 'is_', 'is_not', 'isub', 'itemgetter', 'itruediv', 'ixor', 'le', 'length_hint', 'lshift', 'lt', 'matmul', 'methodcaller', 'mod', 'mul', 'ne', 'neg', 'not_', 'or_', 'pos', 'pow', 'rshift', 'setitem', 'sub', 'truediv', 'truth', 'xor']</span></span><br></pre></td></tr></table></figure></p>
+<p>这 52 个名称中大部分的作用不言而喻。以 i 开头、后面是另一个运算符的那些名称（如iadd、iand 等），对应的是增量赋值运算符（如 +=、&amp;= 等）。如果第一个参数是可变的，那么这些运算符函数会就地修改它；否则，作用与不带 i 的函数一样，直接返回运算结果。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/PL-Grammar/" rel="tag"># PL Grammar</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/21/优化使用VS-Code写Hexo下Markdown的体验/" rel="next" title="优化使用VS Code写Hexo下Markdown的体验">
+                <i class="fa fa-chevron-left"></i> 优化使用VS Code写Hexo下Markdown的体验
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/24/设计模式-策略模式/" rel="prev" title="设计模式-策略模式 (Strategy">
+                设计模式-策略模式 (Strategy <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Janine">
+            
+              <p class="site-author-name" itemprop="name">Janine</p>
+              <p class="site-description motion-element" itemprop="description">You are my sunshine.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#把函数视作对象"><span class="nav-number">1.</span> <span class="nav-text">把函数视作对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高阶函数-higher-order-function"><span class="nav-number">2.</span> <span class="nav-text">高阶函数 higher-order function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#map-filter-reduce-的现代替代品"><span class="nav-number">2.1.</span> <span class="nav-text">map, filter, reduce 的现代替代品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数"><span class="nav-number">2.2.</span> <span class="nav-text">匿名函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#callable"><span class="nav-number">2.3.</span> <span class="nav-text">callable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户定义的可调用类型"><span class="nav-number">2.4.</span> <span class="nav-text">用户定义的可调用类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数内省"><span class="nav-number">2.5.</span> <span class="nav-text">函数内省</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数注解"><span class="nav-number">2.6.</span> <span class="nav-text">函数注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持函数式编程的包"><span class="nav-number">2.7.</span> <span class="nav-text">支持函数式编程的包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#operator"><span class="nav-number">2.7.1.</span> <span class="nav-text">operator</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Janine</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+
+<!-- 中英文之间自动添加空格 -->
+<script type="text/javascript" src="/js/src/text-autospace.min.js"></script>
+
+</html>

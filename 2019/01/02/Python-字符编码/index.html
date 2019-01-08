@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一些概念字节字节（Byte）是计算机中数据存储的基本单元，一字节等于8bit，计算机中的所有数据，不论是保存在磁盘文件上的还是网络上传输的数据（文字、图片、视频、音频文件）都是由字节组成的。 字符你正在阅读的这篇文章就是由很多个字符（Character）构成的，字符一个信息单位，它是各种文字和符号的统称，比如一个英文字母是一个字符，一个汉字是一个字符，一个标点符号也是一个字符。 字符集字符集（Ch">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 字符编码">
+<meta property="og:url" content="http://janine.github.io/2019/01/02/Python-字符编码/index.html">
+<meta property="og:site_name" content="Janine&#39;s Blog">
+<meta property="og:description" content="一些概念字节字节（Byte）是计算机中数据存储的基本单元，一字节等于8bit，计算机中的所有数据，不论是保存在磁盘文件上的还是网络上传输的数据（文字、图片、视频、音频文件）都是由字节组成的。 字符你正在阅读的这篇文章就是由很多个字符（Character）构成的，字符一个信息单位，它是各种文字和符号的统称，比如一个英文字母是一个字符，一个汉字是一个字符，一个标点符号也是一个字符。 字符集字符集（Ch">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://janine.github.io/2019/01/02/Python-字符编码/python3-str2byte.jpg">
+<meta property="og:image" content="http://janine.github.io/2019/01/02/Python-字符编码/Unicode和utf8.png">
+<meta property="og:updated_time" content="2019-01-02T09:19:12.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 字符编码">
+<meta name="twitter:description" content="一些概念字节字节（Byte）是计算机中数据存储的基本单元，一字节等于8bit，计算机中的所有数据，不论是保存在磁盘文件上的还是网络上传输的数据（文字、图片、视频、音频文件）都是由字节组成的。 字符你正在阅读的这篇文章就是由很多个字符（Character）构成的，字符一个信息单位，它是各种文字和符号的统称，比如一个英文字母是一个字符，一个汉字是一个字符，一个标点符号也是一个字符。 字符集字符集（Ch">
+<meta name="twitter:image" content="http://janine.github.io/2019/01/02/Python-字符编码/python3-str2byte.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://janine.github.io/2019/01/02/Python-字符编码/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python 字符编码 | Janine's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style type="text/css">
+html hanla:after {
+   content: " ";
+   display: inline;
+   font-family: Arial;
+   font-size: 0.89em;
+}
+
+html code hanla,
+html pre hanla,
+html kbd hanla,
+html samp hanla {
+display: none;
+}
+
+html ol > hanla,
+html ul > hanla {
+display: none;
+}
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Janine's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Hello, World~</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://janine.github.io/2019/01/02/Python-字符编码/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Janine">
+      <meta itemprop="description" content="You are my sunshine.">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Janine's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python 字符编码
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-02 11:21:57 / 修改时间：17:19:12" itemprop="dateCreated datePublished" datetime="2019-01-02T11:21:57+08:00">2019-01-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h1><h3 id="字节"><a href="#字节" class="headerlink" title="字节"></a>字节</h3><p>字节（Byte）是计算机中数据存储的基本单元，一字节等于8bit，计算机中的所有数据，不论是保存在磁盘文件上的还是网络上传输的数据（文字、图片、视频、音频文件）都是由字节组成的。</p>
+<h3 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h3><p>你正在阅读的这篇文章就是由很多个字符（Character）构成的，字符一个信息单位，它是各种文字和符号的统称，比如一个英文字母是一个字符，一个汉字是一个字符，一个标点符号也是一个字符。</p>
+<h3 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h3><p>字符集（Character Set）就是某个范围内字符的集合，不同的字符集规定了字符的个数，比如 ASCII 字符集总共有128个字符，包含了英文字母、阿拉伯数字、标点符号和控制符。而 GB2312 字符集定义了7445个字符，包含了绝大部分汉字字符。</p>
+<h3 id="字符码"><a href="#字符码" class="headerlink" title="字符码"></a>字符码</h3><p>字符码（Code Point）指的是字符集中每个字符的数字编号，例如 ASCII 字符集用 0-127 连续的128个数字分别表示128个字符，例如 “A” 的字符码编号就是65。</p>
+<h3 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h3><p>字符编码（Character Encoding）是将字符集中的字符码映射为字节流的一种具体实现方案，常见的字符编码有 ASCII 编码、UTF-8 编码、GBK 编码等。某种意义上来说，字符集与字符编码有种对应关系，例如 ASCII 字符集对应 有 ASCII 编码。ASCII 字符编码规定使用单字节中低位的7个比特去编码所有的字符。例如”A” 的编号是65，用单字节表示就是0×41，因此写入存储设备的时候就是b’01000001’。</p>
+<h3 id="编码、解码"><a href="#编码、解码" class="headerlink" title="编码、解码"></a>编码、解码</h3><p>编码的过程是将字符转换成字节流，解码的过程是将字节流解析为字符。</p>
+<h1 id="字符编码的演变"><a href="#字符编码的演变" class="headerlink" title="字符编码的演变"></a>字符编码的演变</h1><h3 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h3><p>说到字符编码，要从计算机的诞生开始讲起，计算机发明于美国，在英语世界里，常用字符非常有限，26个字母（大小写）、10个数字、标点符号、控制符，这些字符在计算机中用一个字节的存储空间来表示绰绰有余，因为一个字节相当于8个比特位，8个比特位可以表示256个符号。于是美国国家标准协会ANSI制定了一套字符编码的标准叫 ASCII(American Standard Code for Information Interchange)，每个字符都对应唯一的一个数字，比如字符 “A” 对应数字是65，”B” 对应 66，以此类推。最早 ASCII 只定义了128个字符编码，包括96个文字和32个控制符号，一共128个字符只需要一个字节的7位就能表示所有的字符，因此 ASCII 只使用了一个字节的后7位，剩下最高位1比特被用作一些通讯系统的奇偶校验。</p>
+<h3 id="扩展的-ASCII：EASCII-ISO-8859-1"><a href="#扩展的-ASCII：EASCII-ISO-8859-1" class="headerlink" title="扩展的 ASCII：EASCII(ISO/8859-1)"></a>扩展的 ASCII：EASCII(ISO/8859-1)</h3><p>计算机慢慢地普及到其他西欧地区时，发现还有很多西欧字符是 ASCII 字符集中没有的，显然 ASCII 已经没法满足人们的需求了，好在 ASCII 字符只用了字节的7位 0×00~0x7F 共128个字符，于是他们在 ASCII 的基础上把原来的7位扩充到8位，把0×80-0xFF这后面的128个数字利用起来，叫 EASCII ，它完全兼容ASCII，扩展出来的符号包括表格符号、计算符号、希腊字母和特殊的拉丁符号。然而 EASCII 时代是一个混乱的时代，各个厂家都有自己的想法，大家没有统一标准，他们各自把最高位按照自己的标准实现了自己的一套字符编码标准，比较著名的就有 CP437， CP437 是 始祖IBM PC、MS-DOS使用的字符编码。</p>
+<p>众多的 ASCII 扩充字符集之间互不兼容，这样导致人们无法正常交流，例如200在CP437字符集表示的字符是 È ，在 ISO/8859-1 字符集里面显示的就是 ╚，于是国际标准化组织（ISO）及国际电工委员会（IEC）联合制定的一系列8位字符集的标准ISO/8859-1(Latin-1)，它继承了 CP437 字符编码的128-159之间的字符，所以它是从160开始定义的，ISO-8859-1在 CP437 的基础上重新定义了 160~255之间的字符。</p>
+<h3 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h3><p>ASCII 字符编码是单字节编码，计算机进入中国后面临的一个问题是如何处理汉字，对于拉丁语系国家来说通过扩展最高位，单字节表示所有的字符已经绰绰有余，但是对于亚洲国家来说一个字节就显得捉襟见肘了。于是中国人自己弄了一套叫 GB2312 的双字节字符编码，又称GB0，1981 由中国国家标准总局发布。GB2312 编码共收录了6763个汉字，同时他还兼容 ASCII，GB 2312的出现，基本满足了汉字的计算机处理需要，它所收录的汉字已经覆盖中国大陆99.75%的使用频率，不过 GB2312 还是不能100%满足中国汉字的需求，对一些罕见的字和繁体字 GB2312 没法处理，后来就在GB2312的基础上创建了一种叫 GBK 的编码，GBK 不仅收录了27484个汉字，同时还收录了藏文、蒙文、维吾尔文等主要的少数民族文字。同样 GBK 也是兼容 ASCII 编码的，对于英文字符用1个字节来表示，汉字用两个字节来标识。</p>
+<h3 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h3><p>GBK仅仅只是解决了我们自己的问题，但是计算机不止是美国人和中国人用啊，还有欧洲、亚洲其他国家的文字诸如日文、韩文全世界各地的文字加起来估计也有好几十万，这已经大大超出了ASCII 码甚至GBK 所能表示的范围了，虽然各个国家可以制定自己的编码方案，但是数据在不同国家传输就会出现各种各样的乱码问题。如果只用一种字符编码就能表示地球甚至火星上任何一个字符时，问题就迎刃而解了。是它，是它，就是它，我们的小英雄，统一联盟国际组织提出了Unicode 编码，Unicode 的学名是”Universal Multiple-Octet Coded Character Set”，简称为UCS。它为世界上每一种语言的每一个字符定义了一个唯一的字符码，Unicode 标准使用十六进制数字表示，数字前面加上前缀 U+，比如字母『A』的Unicode编码是 U+0041，汉字『中』的Unicode 编码是U+4E2D</p>
+<p>Unicode有两种格式：UCS-2和UCS-4。UCS-2就是用两个字节编码，一共16个比特位，这样理论上最多可以表示65536个字符，不过要表示全世界所有的字符显示65536个数字还远远不过，因为光汉字就有近10万个，因此Unicode4.0规范定义了一组附加的字符编码，UCS-4就是用4个字节（实际上只用了31位，最高位必须为0）。理论上完全可以涵盖一切语言所用的符号。</p>
+<p>但是 Unicode 有一定的局限性，一个 Unicode 字符在网络上传输或者最终存储起来的时候，并不见得每个字符都需要两个字节，比如字符“A“，用一个字节就可以表示的字符，偏偏还要用两个字节，显然太浪费空间了。</p>
+<p>第二问题是，一个 Unicode 字符保存到计算机里面时就是一串01数字，那么计算机怎么知道一个2字节的Unicode字符是表示一个2字节的字符呢，例如“汉”字的 Unicode 编码是 U+6C49，我可以用4个ascii数字来传输、保存这个字符；也可以用utf-8编码的3个连续的字节E6 B1 89来表示它。关键在于通信双方都要认可。因此Unicode编码有不同的实现方式，比如：UTF-8、UTF-16等等。Unicode就像英语一样，做为国与国之间交流世界通用的标准，每个国家有自己的语言，他们把标准的英文文档翻译成自己国家的文字，这是实现方式，就像utf-8。</p>
+<h3 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h3><p>UTF-8（Unicode Transformation Format）作为 Unicode 的一种实现方式，广泛应用于互联网，它是一种变长的字符编码，可以根据具体情况用1-4个字节来表示一个字符。比如英文字符这些原本就可以用 ASCII 码表示的字符用UTF-8表示时就只需要一个字节的空间，和 ASCII 是一样的。对于多字节（n个字节）的字符，第一个字节的前n为都设为1，第n+1位设为0，后面字节的前两位都设为10。剩下的二进制位全部用该字符的unicode码填充。</p>
+<p>以『好』为例，『好』对应的 Unicode 是597D，对应的区间是 0000 0800–0000 FFFF，因此它用 UTF-8 表示时需要用3个字节来存储，597D用二进制表示是： 0101100101111101，填充到 1110xxxx 10xxxxxx 10xxxxxx 得到 11100101 10100101 10111101，转换成16进制是 e5a5bd，因此『好』的 Unicode 码 U+597D 对应的 UTF-8 编码是 “E5A5BD”。你可以用 Python 代码来验证：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="string">u"好"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="string">u'\u597d'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a.encode(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>len(b)</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line"><span class="string">'\xe5\xa5\xbd'</span></span><br></pre></td></tr></table></figure>
+<h3 id="Python2-字符编码问题"><a href="#Python2-字符编码问题" class="headerlink" title="Python2 字符编码问题"></a>Python2 字符编码问题</h3><p>Python 的诞生时间比 Unicode 要早很多，Python2 的默认编码是ASCII，正因为如此，才导致很多的编码问题。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> sys</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sys.getdefaultencoding()</span><br><span class="line"><span class="string">'ascii'</span></span><br></pre></td></tr></table></figure>
+<p>所以在 Python2 中，源代码文件必须显示地指定编码类型，否则但凡代码中出现有中文就会报语法错误:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="comment"># 或者是：</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br></pre></td></tr></table></figure>
+<p>Python2 字符串设计上的一些缺陷：</p>
+<ul>
+<li>使用 ASCII 码作为默认编码方式，对中文处理很不友好。</li>
+<li>把字符串的牵强地分为 unicode 和 str 两种类型，误导开发者</li>
+</ul>
+<h3 id="Python3-字符编码"><a href="#Python3-字符编码" class="headerlink" title="Python3 字符编码"></a>Python3 字符编码</h3><h4 id="Python3-把系统默认编码设置为-UTF-8"><a href="#Python3-把系统默认编码设置为-UTF-8" class="headerlink" title="Python3 把系统默认编码设置为 UTF-8"></a>Python3 把系统默认编码设置为 UTF-8</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> sys</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sys.getdefaultencoding()</span><br><span class="line"><span class="string">'utf-8'</span></span><br></pre></td></tr></table></figure>
+<h4 id="区分文本字符和二进制数据"><a href="#区分文本字符和二进制数据" class="headerlink" title="区分文本字符和二进制数据"></a>区分文本字符和二进制数据</h4><p>文本字符和二进制数据区分得更清晰，分别用 str 和 bytes 表示。文本字符全部用 str 类型表示，str 能表示 Unicode 字符集中所有字符，而二进制字节数据用一种全新的数据类型，用 bytes 来表示。</p>
+<p>Python3 中，在字符引号前加‘b’，明确表示这是一个 bytes 类型的对象，实际上它就是一组二进制字节序列组成的数据，bytes 类型可以是 ASCII范围内的字符和其它十六进制形式的字符数据，但不能用中文等非ASCII字符表示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = <span class="string">b'a'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c</span><br><span class="line"><span class="string">b'a'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(c)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">bytes</span>'&gt;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line">&gt;&gt;&gt; d = b'\xe7\xa6\x85'</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d</span><br><span class="line"><span class="string">b'\xe7\xa6\x85'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(d)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">bytes</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line">&gt;&gt;&gt; e = b'宁'</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span></span><br><span class="line">SyntaxError: bytes can only contain ASCII literal characters.</span><br></pre></td></tr></table></figure>
+<p>bytes 类型提供的操作和 str 一样，支持分片、索引、基本数值运算等操作。但是 str 与 bytes 类型的数据不能执行 + 操作，尽管在py2中是可行的。</p>
+<h4 id="encode-与-decode"><a href="#encode-与-decode" class="headerlink" title="encode 与 decode"></a>encode 与 decode</h4><p>str 与 bytes 之间的转换可以用 encode 和从decode 方法。</p>
+<img src="/2019/01/02/Python-字符编码/python3-str2byte.jpg" title="null">
+<hr>
+<p>encode 负责字符到字节的编码转换。默认使用 UTF-8 编码转换。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>str = <span class="string">"简宁"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>str.encode()</span><br><span class="line"><span class="string">b'\xe7\xae\x80\xe5\xae\x81'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>str.encode(<span class="string">"GBK"</span>)</span><br><span class="line"><span class="string">b'\xbc\xf2\xc4\xfe'</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>decode 负责字节到字符的解码转换，默认使用 UTF-8 编码格式进行转换。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">b'\xe7\xae\x80\xe5\xae\x81'</span>.decode()</span><br><span class="line"><span class="string">'简宁'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">b'\xbc\xf2\xc4\xfe'</span>.decode(<span class="string">"GBK"</span>)</span><br><span class="line"><span class="string">'简宁'</span></span><br></pre></td></tr></table></figure>
+<img src="/2019/01/02/Python-字符编码/Unicode和utf8.png" title="Unicode和utf8">
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/02/爬虫-url去重/" rel="next" title="爬虫之url去重">
+                <i class="fa fa-chevron-left"></i> 爬虫之url去重
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/03/SpringMVC-与-Mybatis-整合/" rel="prev" title="SpringMVC 与 Mybatis 整合">
+                SpringMVC 与 Mybatis 整合 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Janine">
+            
+              <p class="site-author-name" itemprop="name">Janine</p>
+              <p class="site-description motion-element" itemprop="description">You are my sunshine.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些概念"><span class="nav-number">1.</span> <span class="nav-text">一些概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节"><span class="nav-number">1.0.1.</span> <span class="nav-text">字节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符"><span class="nav-number">1.0.2.</span> <span class="nav-text">字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符集"><span class="nav-number">1.0.3.</span> <span class="nav-text">字符集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符码"><span class="nav-number">1.0.4.</span> <span class="nav-text">字符码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符编码"><span class="nav-number">1.0.5.</span> <span class="nav-text">字符编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码、解码"><span class="nav-number">1.0.6.</span> <span class="nav-text">编码、解码</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#字符编码的演变"><span class="nav-number">2.</span> <span class="nav-text">字符编码的演变</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ASCII"><span class="nav-number">2.0.1.</span> <span class="nav-text">ASCII</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展的-ASCII：EASCII-ISO-8859-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">扩展的 ASCII：EASCII(ISO/8859-1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GBK"><span class="nav-number">2.0.3.</span> <span class="nav-text">GBK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unicode"><span class="nav-number">2.0.4.</span> <span class="nav-text">Unicode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UTF-8"><span class="nav-number">2.0.5.</span> <span class="nav-text">UTF-8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python2-字符编码问题"><span class="nav-number">2.0.6.</span> <span class="nav-text">Python2 字符编码问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python3-字符编码"><span class="nav-number">2.0.7.</span> <span class="nav-text">Python3 字符编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Python3-把系统默认编码设置为-UTF-8"><span class="nav-number">2.0.7.1.</span> <span class="nav-text">Python3 把系统默认编码设置为 UTF-8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区分文本字符和二进制数据"><span class="nav-number">2.0.7.2.</span> <span class="nav-text">区分文本字符和二进制数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#encode-与-decode"><span class="nav-number">2.0.7.3.</span> <span class="nav-text">encode 与 decode</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Janine</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+
+<!-- 中英文之间自动添加空格 -->
+<script type="text/javascript" src="/js/src/text-autospace.min.js"></script>
+
+</html>
