@@ -1852,7 +1852,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff03eb;
+  background: #ff369f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3140,7 +3140,7 @@ ul.breadcrumb li+li:last-child {
   }
 }
 .posts-expand .post-title {
-  font-size: 2.5em;
+  font-size: 2.2em;
 }
 .post-body h1 {
   font-size: 2em;
@@ -3152,7 +3152,7 @@ ul.breadcrumb li+li:last-child {
 }
 .post-body h3 {
   font-size: 1.6em;
-  border-bottom: 2px solid #fcc;
+  border-bottom: 1.5px solid #fcc;
 }
 .post-body h4 {
   font-size: 1.4em;
